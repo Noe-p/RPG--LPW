@@ -18,4 +18,11 @@ public abstract class Weapon {
 	public String getName() {
 		return this.name;
 	}
+	
+	public int getPrice() {
+		return this.price;
+	}
+	public int getDamage() {
+		return this.damage;
+	}
 }

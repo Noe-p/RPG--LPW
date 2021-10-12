@@ -3,22 +3,24 @@ import java.util.ArrayList;
 
 import Personnage.Doppler;
 import Personnage.Goule;
+import Personnage.Monsters;
 import Personnage.Personnage;
 import Personnage.Player;
 
 
 public class Map {
 	
-	ArrayList<Personnage> personnages;
-	private int taille = 10;
+	ArrayList<Monsters> monsters;
+	private Personnage player;
+	private int taille = 8;
 	
 	public Map(Player player) {
-		this.personnages = new ArrayList<Personnage>();
-		this.personnages.add(player);
+		this.monsters = new ArrayList<Monsters>();
+		this.player = player;
 	}
 	
 	public void afficheMap() {
-		System.out.println("----------------------");
+		System.out.println("__________________");
 		for (int i = 0; i < this.taille; i++) {
 			System.out.print("|");
 			for(int j=0; j<this.taille*2; j++) {
@@ -27,22 +29,27 @@ public class Map {
 			System.out.println("|");
 
 		}
-		System.out.println("----------------------");
+		System.out.println("__________________");
 	}
 	
 	public String affichePersonnages(int x, int y) {
 
-		for(Personnage pers : this.personnages) {
-			int posX = pers.getPosition().getX();
-			int posY = pers.getPosition().getY();
+		for(Monsters monster : this.monsters) {
+			int posX = monster.getPosition().getX();
+			int posY = monster.getPosition().getY();
 
 			if(posX == x && posY == y) {
-				switch(pers.getGenre()) {
+				switch(monster.getGenre()) {
 					case "Goule": return "G";
 					case "Doppler": return "D";
-					case "Sorceleur": return "S";
-					case "Magicien": return "M";
 				}
+			}
+		}
+		
+		if(this.player.getPosition().getX() == x && player.getPosition().getY() == y) {
+			switch(player.getGenre()) {
+				case "Sorceleur": return "S";
+				case "Magicien": return "M";
 			}
 		}
 		return " ";
@@ -50,13 +57,16 @@ public class Map {
 	
 	public void createMonsters() {
 		Goule goule1 = new Goule();
-		this.personnages.add(goule1);
+		this.monsters.add(goule1);
 		
 		Goule goule2 = new Goule();
-		this.personnages.add(goule2);
+		this.monsters.add(goule2);
 		
 		Doppler doppler = new Doppler();
-		this.personnages.add(doppler);
+		this.monsters.add(doppler);
 	}
 	
+	public void removeMonster(int i) {
+		this.monsters.remove(i);
+	}
 }

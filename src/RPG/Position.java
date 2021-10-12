@@ -8,6 +8,30 @@ public class Position {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public void moveUp() {
+		if(y>0){ 
+			y--;
+		}
+	}
+	
+	public void moveLeft() {
+		if(x>0){ 
+			x--;
+		}
+	}
+	
+	public void moveRight() {
+		if(x<15){ 
+			x++;
+		}
+	}
+	
+	public void moveDown() {
+		if(y<8){ 
+			y++;
+		}
+	}
 
 	public int getX() {
 		return x;
