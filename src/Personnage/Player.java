@@ -5,9 +5,15 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import RPG.Position;
-import RPG.Store;
-import Weapon.Stick;
-import Weapon.Weapon;
+import Store.Stick;
+import Store.Store;
+import Store.Weapon;
+
+/**
+ * 
+ * Cette classe gère le joueur. 
+ *
+ */
 
 public abstract class Player extends Personnage {
 	static Scanner in = new Scanner(System.in);

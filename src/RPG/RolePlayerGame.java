@@ -1,6 +1,7 @@
 package RPG;
 
 import Personnage.Player;
+import Store.Store;
 
 public class RolePlayerGame {
 
@@ -18,6 +19,7 @@ public class RolePlayerGame {
 			player.move(store);
 			
 			for(int i=0; i<map.monsters.size(); i++) {
+				//Si le joueur tombe sur un monstre.
 				if(player.getPosition().getX() == map.monsters.get(i).getPosition().getX()
 				&& player.getPosition().getY() == map.monsters.get(i).getPosition().getY()) {
 					new Fight(player, map.monsters.get(i));
@@ -33,7 +35,7 @@ public class RolePlayerGame {
 		
 		
 		if(player.alive) {
-			System.out.println("Bravo vous avez tuer tous les monstres !");
+			System.out.println("Bravo vous avez tué tous les monstres !");
 		}
 		else {
 			System.out.println("Vous avez perdu...");

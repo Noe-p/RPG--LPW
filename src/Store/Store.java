@@ -1,11 +1,7 @@
-package RPG;
-
-import Weapon.Epee;
-import Weapon.Hache;
-import Weapon.Weapon;
+package Store;
 
 public class Store {
-	private static Weapon[] store = {new Epee(), new Hache()};
+	private static Weapon[] store = {new Epee(), new Hache(), new Arbalete()};
 	
 	
 	public void getStore() {

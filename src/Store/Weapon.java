@@ -1,6 +1,6 @@
-package Weapon;
+package Store;
 
-public abstract class Weapon {
+public abstract class Weapon extends Store {
 	protected String name;
 	protected int damage; 
 	protected int price;

@@ -2,6 +2,12 @@ package Personnage;
 
 import RPG.Position;
 
+/**
+ * 
+ * C'est la super classe qui gère tous les personnages du jeu (joueur, monstre)
+ *
+ */
+
 public abstract class Personnage {
 	private String name; 
 	private int pv; 

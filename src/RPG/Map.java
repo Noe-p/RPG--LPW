@@ -7,6 +7,11 @@ import Personnage.Monsters;
 import Personnage.Personnage;
 import Personnage.Player;
 
+/**
+ * 
+ * Cette classe affiche la map et créer les monstres.
+ *
+ */
 
 public class Map {
 	
@@ -19,6 +24,7 @@ public class Map {
 		this.player = player;
 	}
 	
+	//Affiche la map.
 	public void afficheMap() {
 		System.out.println("__________________");
 		for (int i = 0; i < this.taille; i++) {
@@ -32,6 +38,7 @@ public class Map {
 		System.out.println("__________________");
 	}
 	
+	//Permet d'écrire une lettre suivant le personnage sur la map.
 	public String affichePersonnages(int x, int y) {
 
 		for(Monsters monster : this.monsters) {
@@ -55,6 +62,7 @@ public class Map {
 		return " ";
 	}
 	
+	//Créer les monstres.
 	public void createMonsters() {
 		Goule goule1 = new Goule();
 		this.monsters.add(goule1);

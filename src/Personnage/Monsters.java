@@ -2,6 +2,11 @@ package Personnage;
 
 import RPG.Position;
 
+/**
+ * 
+ * C'est la classe qui gère les monstres 
+ *
+ */
 public abstract class Monsters extends Personnage{
 	private int damage;
 	private int money;
@@ -22,6 +27,8 @@ public abstract class Monsters extends Personnage{
 		return this.money;
 	}
 	
+	//Cette fonction retourne un nombre aléatoire, elle sert à la position des monstres sur la map 
+	//Probleme rencontré : Deux monstres peuvent avoir la même position...
 	public static int random(int max) {
 		return (int) (Math.random() * ( max ));
 	}
