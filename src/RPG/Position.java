@@ -15,36 +15,50 @@ public class Position {
 		this.y = y;
 	}
 	
-	public void moveUp() {
-		if(y>0){ 
-			y--;
+	public void moveUp(Map map) {
+		if(this.y>0 && positionObstacle(map, this.x, this.y-1)){ 
+			this.y--;
 		}
 	}
 	
-	public void moveLeft() {
-		if(x>0){ 
-			x--;
+	public void moveLeft(Map map) {
+		if(this.x>0 && positionObstacle(map, this.x-1, this.y)){ 
+			this.x--;
 		}
 	}
 	
-	public void moveRight() {
-		if(x<15){ 
-			x++;
+	public void moveRight(Map map) {	
+		if(this.x<15 && positionObstacle(map, this.x+1, this.y)){ 
+			this.x++;
 		}
 	}
 	
-	public void moveDown() {
-		if(y<8){ 
-			y++;
+	public void moveDown(Map map) {
+		if(this.y<7 && positionObstacle(map, this.x, this.y+1)){ 
+			this.y++;
 		}
+	}
+	
+	public boolean positionObstacle(Map map, int x, int y) {
+		boolean flag = true;
+		for(int i=0; i<map.obstacles.size(); i++) {
+			int ox = map.obstacles.get(i).getPosition().getX();
+			int oy = map.obstacles.get(i).getPosition().getY();
+			
+			if(x == ox && y == oy){ 
+				flag = false;
+				System.out.println("Vous ne pouvez pas passer, "+map.obstacles.get(i).getName()+" bouche le passage.");
+			}
+		}
+		return flag;
 	}
 
 	public int getX() {
-		return x;
+		return this.x;
 	}
 
 	public int getY() {
-		return y;
+		return this.y;
 	}
 	
 }

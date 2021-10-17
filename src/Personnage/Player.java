@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import RPG.Map;
 import RPG.Position;
 import Store.Stick;
 import Store.Store;
@@ -22,8 +23,8 @@ public abstract class Player extends Personnage {
 	ArrayList<Weapon> weapons;
 	private int money;
 
-	public Player(String name, int pv, String genre) {
-		super(name, pv, genre, new Position(0,0));
+	public Player(String name, int pv, String genre, int xp) {
+		super(name, pv, genre, new Position(0,0), xp);
 		this.weapon = new Stick();
 		this.weapons = new ArrayList<Weapon>();
 		this.weapons.add(weapon);
@@ -69,23 +70,23 @@ public abstract class Player extends Personnage {
 		}
 	}
 	
-	public void move(Store store) {
-		System.out.println("Pour Acheter une arme taper la touche \'a\'");
+	public void move(Store store, Map map) {
+		System.out.println("Pour acheter une arme taper la touche \'a\'.");
 
 		in = new Scanner(System.in);
 		String key = in.next();
 		switch(key) {
 			case "z": 
-				super.position.moveUp();
+				super.position.moveUp(map);
 				break;
 			case "q": 
-				super.position.moveLeft();
+				super.position.moveLeft(map);
 				break;
 			case "s": 
-				super.position.moveDown();
+				super.position.moveDown(map);
 				break;
 			case "d": 
-				super.position.moveRight();
+				super.position.moveRight(map);
 				break;
 			case "a":
 				buyWeapon(store);
@@ -165,7 +166,7 @@ public abstract class Player extends Personnage {
 	}
 	
 	public String toString() {
-		return super.getName() + " le " + super.getGenre() + " : [Pv:"+super.getPv()+", Argent:"+this.money+"$, Arme:"+this.weapon.getName()+"]";
+		return super.getName() + " le " + super.getGenre() + " : [Pv:"+super.getPv()+", Argent:"+this.money+"$, Xp:"+this.xp+", Arme:"+this.weapon.getName()+"]";
 	} 
 	
 	public void getWeapons() {
@@ -176,5 +177,13 @@ public abstract class Player extends Personnage {
 	
 	public void addMoney(int money) {
 		this.money = this.money + money;
+	}
+	
+	public void addXp(int xp) {
+		this.xp = this.xp+xp;
+		if(this.xp >= 100 || this.xp >= 200) {
+			System.out.println("Bravo vous monté d'un niveau, vous gagner 100pv !");
+			this.pv = this.pv + 100;
+		}
 	}
 }

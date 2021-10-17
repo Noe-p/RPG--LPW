@@ -10,17 +10,20 @@ import RPG.Position;
 
 public abstract class Personnage {
 	private String name; 
-	private int pv; 
+	protected int pv; 
 	private String genre; 
 	protected Position position;
 	public boolean alive = false;
+	protected int xp;
 	
-	public Personnage(String name, int pv, String genre, Position position) {
+	
+	public Personnage(String name, int pv, String genre, Position position, int xp) {
 		this.name = name; 
 		this.pv = pv; 
 		this.genre = genre;
 		this.position = position;
 		this.alive = true;
+		this.xp = xp;
 	}
 	
 	public void attaque(int damage) {
@@ -44,5 +47,9 @@ public abstract class Personnage {
 	
 	public Position getPosition() {
 		return this.position;
+	}
+	
+	public int getXp() {
+		return this.xp;
 	}
 }

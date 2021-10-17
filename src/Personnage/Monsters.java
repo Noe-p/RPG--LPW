@@ -12,8 +12,8 @@ public abstract class Monsters extends Personnage{
 	private int money;
 
 	
-	public Monsters(String name, int pv, String genre, int damage, int money) {
-		super(name, pv, genre, new Position(random(15), random(8)));
+	public Monsters(String name, int pv, String genre, int damage, int money, int xp) {
+		super(name, pv, genre, new Position(random(15), random(8)), xp);
 		
 		this.damage = damage;
 		this.money = money;

@@ -1,11 +1,14 @@
 package RPG;
 import java.util.ArrayList;
 
+import Personnage.Arbre;
 import Personnage.Doppler;
 import Personnage.Goule;
 import Personnage.Monsters;
+import Personnage.Obstacle;
 import Personnage.Personnage;
 import Personnage.Player;
+import Personnage.Roche;
 
 /**
  * 
@@ -16,11 +19,13 @@ import Personnage.Player;
 public class Map {
 	
 	ArrayList<Monsters> monsters;
+	ArrayList<Obstacle> obstacles;
 	private Personnage player;
 	private int taille = 8;
 	
 	public Map(Player player) {
 		this.monsters = new ArrayList<Monsters>();
+		this.obstacles = new ArrayList<Obstacle>();
 		this.player = player;
 	}
 	
@@ -52,6 +57,18 @@ public class Map {
 				}
 			}
 		}
+		for(Obstacle obstacle : this.obstacles) {
+			int posX = obstacle.getPosition().getX();
+			int posY = obstacle.getPosition().getY();
+
+			if(posX == x && posY == y) {
+				switch(obstacle.getName()) {
+					case "un arbre": return "A";
+					case "une roche": return "R";
+				}
+			}
+
+		}
 		
 		if(this.player.getPosition().getX() == x && player.getPosition().getY() == y) {
 			switch(player.getGenre()) {
@@ -64,6 +81,18 @@ public class Map {
 	
 	//Créer les monstres.
 	public void createMonsters() {
+		Arbre arbre = new Arbre(3, 4);
+		this.obstacles.add(arbre);
+		
+		Arbre arbre2 = new Arbre(9, 6);
+		this.obstacles.add(arbre2);
+		
+		Roche roche = new Roche(14, 3);
+		this.obstacles.add(roche);
+		
+		Roche roche2 = new Roche(1, 0);
+		this.obstacles.add(roche2);
+		
 		Goule goule1 = new Goule();
 		this.monsters.add(goule1);
 		
@@ -72,9 +101,21 @@ public class Map {
 		
 		Doppler doppler = new Doppler();
 		this.monsters.add(doppler);
+		
+		Doppler doppler2 = new Doppler();
+		this.monsters.add(doppler2);
+		
 	}
 	
 	public void removeMonster(int i) {
 		this.monsters.remove(i);
+	}
+	
+	public void removeObstacle(int i) {
+		this.obstacles.remove(i);
+	}
+	
+	public int getTaille() {
+		return this.taille;
 	}
 }
